@@ -5,7 +5,7 @@ from rosbag import Bag
 from tqdm import tqdm
 
 
-def stream(input_file: Bag, output_file: Bag, topics: list) -> None:
+def stream(input_file, output_file, topics):
     """
     Stream data from an input bag to an output bag.
 
