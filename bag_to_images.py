@@ -22,12 +22,12 @@ def main():
     parser.add_argument("bag_file", help="Input ROS bag.")
     parser.add_argument("output_dir", help="Output directory.")
     parser.add_argument("image_topic", help="Image topic.")
-    parser.add_argument("prefix", help="Prefix")
+    parser.add_argument("suffix", help="Image name suffix")
 
     args = parser.parse_args()
 
-    print "Extract images from %s on topic %s into %s" % (args.bag_file,
-                                                          args.image_topic, args.output_dir)
+    print("Extract images from %s on topic %s into %s" % (args.bag_file,
+                                                          args.image_topic, args.output_dir))
 
     bag = rosbag.Bag(args.bag_file, "r")
     bridge = CvBridge()
@@ -35,8 +35,8 @@ def main():
     for topic, msg, t in bag.read_messages(topics=[args.image_topic]):
         cv_img = bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
 
-        cv2.imwrite(os.path.join(args.output_dir, args.prefix + "frame%06i.png" % count), cv_img)
-        print "Wrote image %i" % count
+        cv2.imwrite(os.path.join(args.output_dir, ("frame%06i_" % count) + args.suffix + ".png" ), cv_img)
+        print("Wrote image %i" % count)
 
         count += 1
 
