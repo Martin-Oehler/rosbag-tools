@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Merge one or more bag files and filter topics."""
 import argparse
 from fnmatch import fnmatchcase

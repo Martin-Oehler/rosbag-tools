@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """A script to extract depths from a bag file."""
 import argparse
 import glob

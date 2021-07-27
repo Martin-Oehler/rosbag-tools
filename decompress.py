@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Decompress a compressed image into a raw image."""
 import argparse
 from rosbag import Bag

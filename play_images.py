@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """A script to play raw image footage."""
 import argparse
 from rosbag import Bag

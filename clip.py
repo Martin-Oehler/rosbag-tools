@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Clip a segment from a ROS bag."""
 import argparse
 from tqdm import tqdm

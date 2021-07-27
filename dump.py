@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Dump messages from a bag."""
 import argparse
 from rosbag import Bag

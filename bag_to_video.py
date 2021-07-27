@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """A script to convert a ROS bag image topic to a video file."""
 import argparse
 import os
