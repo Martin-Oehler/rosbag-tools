@@ -5,7 +5,7 @@ import os
 import sys
 from rosbag import Bag
 from tqdm import tqdm
-from src.ros_utils import get_camera_image
+from src.ros_utils import get_camera_image_with_encoding
 # hacky fix to remove ROS from python path to import a different cv2
 del sys.path[1]
 import cv2
@@ -48,7 +48,7 @@ def bag_to_video(
             cv_dims = (msg.width, msg.height)
             video = cv2.VideoWriter(output_file, codec, fps, cv_dims)
         # read the image data into a NumPy tensor
-        img = get_camera_image(msg.data, (msg.height, msg.width))
+        img = get_camera_image_with_encoding(msg.encoding, msg.data, (msg.height, msg.width))
         # write the image to the video file
         video.write(img)
 
