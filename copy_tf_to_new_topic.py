@@ -7,7 +7,7 @@ FRAMES_TO_COPY = ["left", "left_fisheye", "right", "right_fisheye", "frontleft",
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Copy tf messages of the given frames onto a new topic")
+    parser = argparse.ArgumentParser(description="Copy tf messages of the given frames onto a new topic.")
     parser.add_argument("bag_file", help="Input ROS bag.")
     parser.add_argument("output_bag_file", help="Output ROS bag.")
     parser.add_argument("frames", nargs='+', help="Frames to copy")
