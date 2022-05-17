@@ -6,7 +6,7 @@ def main():
     parser = argparse.ArgumentParser(description="Splits the bag file into smaller parts.")
     parser.add_argument("bag_file", help="Input ROS bag.")
     parser.add_argument("output_base_name", help="Base name of the output bag file")
-    parser.add_argument("size", type=float, default=1, help="Approximate size of each output bag file [GB]")
+    parser.add_argument("--size", type=float, default=1, help="Approximate size of each output bag file [GB]")
 
     args = parser.parse_args()
 
