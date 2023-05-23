@@ -8,7 +8,7 @@ from tqdm import tqdm
 def shift(
     input_file: Bag,
     output_file: Bag,
-    shift_topic: list,
+    shift_topics: list,
     shift_sec: float,
 ) -> None:
     """
@@ -17,7 +17,7 @@ def shift(
     Args:
         input_file: the input bag to stream from
         output_file: the output bag to write data to
-        topic: the topic to shift in time
+        shift_topics: the topics to shift in time
         shift_sec: the amount of time to shift by
 
     Returns:
@@ -29,7 +29,7 @@ def shift(
         # iterate over the messages in this input bag
         for topic, msg, time in input_file:
             # if the topic is the sentinel topic, increase the count
-            if topic == shift_topic:
+            if topic in shift_topics:
                 # adjust time by the shift value
                 time += rospy.Duration(shift_sec)
                 # update the message header with the new time stamp
@@ -57,9 +57,10 @@ if __name__ == '__main__':
         required=True,
     )
     # add an argument for the topic to shift in time
-    PARSER.add_argument('--topic', '-t',
+    PARSER.add_argument('--topics', '-t',
         type=str,
-        help='The topic to shift in time.',
+        nargs='+',
+        help='The topics to shift in time.',
         required=True,
     )
     # add an argument for the amount of time to shift
@@ -76,7 +77,7 @@ if __name__ == '__main__':
             # open the output bag in an automatically closing context
             with Bag(ARGS.output_bag, 'w') as output_bag:
                 # stream the input bag to the output bag
-                shift(input_bag, output_bag, ARGS.topic, ARGS.shift)
+                shift(input_bag, output_bag, ARGS.topics, ARGS.shift)
     except KeyboardInterrupt:
         pass
 
