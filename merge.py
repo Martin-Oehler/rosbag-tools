@@ -24,11 +24,11 @@ def stream(input_file, output_file, topics):
     # create a progress bar for iterating over the messages in the bag
     with tqdm(total=input_file.get_message_count(), unit='message') as prog:
         # iterate over the messages in this input bag
-        for topic, msg, time in input_file:
+        for topic, msg, time, header in input_file.read_messages(return_connection_header=True):
             # check for matches between the topics filter and this topic
             if any(fnmatchcase(topic, pattern) for pattern in topics):
                 # write this message to the output bag
-                output_file.write(topic, msg, time)
+                output_file.write(topic, msg, time, connection_header=header)
                 # increment the counter of included messages
                 included += 1
             else:
